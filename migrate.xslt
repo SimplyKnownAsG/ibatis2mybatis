@@ -16,20 +16,22 @@
 -->
 <xsl:stylesheet
 	version="1.0"
-	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:java="http://xml.apache.org/xslt/java">
 <xsl:output method="xml" encoding="UTF-8" />
 
 <xsl:template match="/sqlMapConfig">
-<xsl:comment>Converted at: <xsl:value-of select="string(java:java.util.Date.new())"/> </xsl:comment>
+<!-- <xsl:comment>Converted at: <xsl:value-of select="string(java:java.util.Date.new())"/> </xsl:comment> -->
 <xsl:text disable-output-escaping="yes"><![CDATA[
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD SQL Map Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 ]]></xsl:text>
 <xsl:element name="configuration">
   	<xsl:apply-templates select="/sqlMapConfig/settings"/>
+
 	<xsl:text>
-	</xsl:text>
+    </xsl:text>
+
   	<xsl:element name="typeAliases">
 		<xsl:text>
 		</xsl:text>
@@ -39,9 +41,10 @@
 			</xsl:text>
  		</xsl:for-each>
   	</xsl:element>
+
 	<xsl:text>
-	
-	</xsl:text>
+    </xsl:text>
+
   	<xsl:element name="typeHandlers">
 		<xsl:text>
 		</xsl:text>
@@ -55,19 +58,20 @@
 			</xsl:text>
  		</xsl:for-each>
   	</xsl:element>
+
 	<xsl:text>
-	
+
 	</xsl:text>
-	
+
 	<xsl:if test="resultObjectFactory">
 		<xsl:element name="objectFactory">
 			<xsl:attribute name="type"><xsl:value-of select="resultObjectFactory/@type"/></xsl:attribute>
 		</xsl:element>
 		<xsl:text>
-		
+
 		</xsl:text>
 	</xsl:if>
-	
+
 	<xsl:if test="transactionManager">
   	<xsl:element name="environments"><xsl:attribute name="default">default</xsl:attribute>
 		<xsl:text>
@@ -107,10 +111,10 @@
 		</xsl:text>
 	</xsl:element>
 	<xsl:text>
-	
+
 	</xsl:text>
-	</xsl:if>	
-	
+	</xsl:if>
+
   	<xsl:element name="mappers">
 		<xsl:text>
 		</xsl:text>
@@ -183,14 +187,10 @@
 </xsl:template>
 
 
-
-
-
-
 <xsl:template match="/sqlMap">
-<xsl:comment>Converted at: <xsl:value-of select="string(java:java.util.Date.new())"/> </xsl:comment>
+<!-- <xsl:comment>Converted at: <xsl:value-of select="string(java:java.util.Date.new())"/> </xsl:comment> -->
 <xsl:text disable-output-escaping="yes"><![CDATA[
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 ]]></xsl:text>
 <xsl:element name="mapper">
@@ -310,7 +310,7 @@
   	<xsl:apply-templates/>
 	</xsl:element>
 </xsl:template>
-  	
+
 <xsl:template match="/sqlMap/resultMap/discriminator/subMap">
 	<xsl:element name="case">
 		<xsl:attribute name="value"><xsl:value-of select="@value" /></xsl:attribute>
@@ -596,14 +596,9 @@
 </xsl:template>
 
 <xsl:template match="/sqlMap/typeAlias|statement|cacheModel|dynamic|isPropertyAvailable|isNotPropertyAvailable|isNotParameterPresent|isParameterPresent|/sqlMapConfig/properties">
-	<xsl:comment>
-		Sorry, I can`t migrate	<xsl:value-of select="@*"/>
-		See console output for further details 
-	</xsl:comment>
-	<xsl:message >
-		Sorry, I can`t migrate:
+    <xsl:comment>BEGIN cannot migrate</xsl:comment>
 <xsl:copy-of select="."/>
-	</xsl:message> 
+    <xsl:comment>END cannot migrate</xsl:comment>
 </xsl:template>
 
 </xsl:stylesheet>
